@@ -20,20 +20,10 @@ public class Repository implements AutoCloseable {
     }
 
     public void insert(Entity entity) throws Exception{
-        preparedStatement=connection.prepareStatement ("INSERT INTO onlineshop () VALUES ()");
+        preparedStatement=connection.prepareStatement ("INSERT INTO onlineshop (goods , id) VALUES (?,?)");
+        preparedStatement.setString(1,entity.getGoods());
+        preparedStatement.setString(2,entity.getId());
         preparedStatement.executeUpdate ();
-    }
-
-
-    public List<Entity> select() throws Exception{
-        preparedStatement=connection.prepareStatement ("SELECT * FROM onlineshop");
-        ResultSet resultSet=preparedStatement.executeQuery ();
-        List<Entity> entityList =new ArrayList <> ();
-        while (resultSet.next ()){
-            Entity entity =new Entity();
-            entityList.add (entity);
-        }
-        return entityList;
     }
 
     public void commit() throws Exception{

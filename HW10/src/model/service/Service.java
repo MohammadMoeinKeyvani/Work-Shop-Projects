@@ -15,17 +15,12 @@ public class Service {
 
     public void save (Entity entity) throws Exception {
         try (Repository repository = new Repository()) {
+            entity.setGoods(entity.getGoods());
+            entity.setId(entity.getId());
             repository.insert (entity);
             repository.commit ();
         }
     }
 
-    public List<Entity> report() throws Exception{
-        List<Entity> entityList;
-        try (Repository repository =new Repository()){
-            entityList = repository.select ();
-        }
-        return entityList;
-    }
 
 }
