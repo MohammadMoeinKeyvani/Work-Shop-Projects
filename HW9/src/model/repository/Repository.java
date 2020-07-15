@@ -35,6 +35,12 @@ public class Repository implements AutoCloseable {
         preparedStatement.executeUpdate ();
     }
 
+    public void delete(String id) throws Exception{
+        preparedStatement=connection.prepareStatement ("DELETE FROM violation WHERE id=?");
+        preparedStatement.setString (1,id);
+        preparedStatement.executeUpdate ();
+    }
+
     public List<Entity> select() throws Exception{
         preparedStatement=connection.prepareStatement ("SELECT * FROM violation");
         ResultSet resultSet=preparedStatement.executeQuery ();

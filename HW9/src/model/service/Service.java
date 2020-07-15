@@ -23,12 +23,22 @@ public class Service {
         }
     }
 
-    public void edit (Entity entity , String numberplate , String model) throws Exception{
+    public void edit (Entity entity , String id , String numberplate , String model) throws Exception{
         try (Repository repo=new Repository ()){
+            entity.setId(id);
             entity.setNumberplate (numberplate);
             entity.setModel (model);
             repo.update (entity);
             repo.commit ();
+        }
+    }
+
+    public void remove (String id){
+        try (Repository repository=new Repository ()){
+            repository.delete(id);
+            repository.commit ();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

@@ -15,14 +15,18 @@ public class Controller {
     }
 
 
-    public void update ( String numberplate , String model)
+    public void update (String id , String numberplate , String model)
     {
         try {
-            Service.getInstance().edit(new Entity() , numberplate ,model);
+            Service.getInstance().edit(new Entity() , id , numberplate ,model);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+    }
+
+    public void remove (String id){
+        Service.getInstance().remove(id);
     }
 
 }
